@@ -1,0 +1,23 @@
+<!-- templates/main/finalize_order.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Finalizacja zamówienia{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Finalizacja zamówienia</h2>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ album.title }}</h5>
+            <p class="card-text">Artysta: {{ album.artist }}</p>
+            <p class="card-text">Cena: {{ album.price }} PLN</p>
+            <p class="card-text">Data wydania: {{ album.release_date }}</p>
+            <form method="post" action="{% url 'finalize_order' album.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-block">Potwierdź zakup</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
